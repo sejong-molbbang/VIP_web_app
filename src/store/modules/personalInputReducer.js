@@ -1,5 +1,4 @@
 import { createAction, handleActions } from 'redux-actions';
-//import  MyMailer  from 'server/models/mail/node_mailer';
 
 const CHANGE_VALUE = 'signup/CHANGE_VALUE';
 const SUBMIT_FIRST = 'signup/SUBMIT_FIRST';
@@ -45,7 +44,6 @@ export default handleActions ({
         const email_regex = /([\w\.\-_]+)?\w+@[\w-_]+(\.\w+){1,}/;
         const password_regex = /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,20}$/;
         let check = false;
-
         if(name === 'email') {
             check = (email_regex.exec(value) !== null);
         }

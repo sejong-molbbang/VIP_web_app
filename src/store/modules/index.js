@@ -1,13 +1,10 @@
 import { combineReducers } from 'redux';
-import login from './login';
+import { default as reducer } from 'redux-csrf';
+import loginReducer from './loginReducer';
 import personalInputReducer from './personalInputReducer';
-import contactReducer from './contactReducer';
-import developInputReducer from './developInputReducer';
-import experienceInputReducer from './experienceInputReducer';
 
 export default combineReducers({
-    login, personalInputReducer,
-    contactReducer, 
-    developInputReducer, 
-    experienceInputReducer
+    loginReducer,
+    personalInputReducer,
+    _csrf: reducer,
 });
