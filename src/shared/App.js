@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Home, Signup, Main } from 'pages';
+import { Home, Signup, Mainscreen } from 'pages';
 import { Route, Switch } from 'react-router-dom';
 
 class App extends Component {
@@ -8,6 +8,7 @@ class App extends Component {
         return (
             <div>
                 <Route exact path="/" component={Home}/>
+                <Route path="/mainscreen" component={Mainscreen}/>
                 <Switch>
                     <Route path="/signup/:number" component={Signup}/>
                     <Route path="/signup" component={Signup}/>

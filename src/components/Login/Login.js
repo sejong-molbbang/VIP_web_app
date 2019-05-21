@@ -41,12 +41,13 @@ class LoginForm extends Component {
                         name= 'passwd'
                         onChange={onChange}
                     />
-
+                    <Link to="/Mainscreen">
                     <Button
                      color='red' fluid size='large'
                      onClick={signin}>
                         Login
                     </Button>
+                    </Link>
                     </Segment>
                 </Form>
                 <Message>
