@@ -1,201 +1,126 @@
 import React, {Component} from 'react'
 import LoginContainer from 'containers/LoginContainer';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
+import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
-import Button from '@material-ui/core/Button';
 
 import ReactPlayer from 'react-player';
 import { Link } from 'react-router-dom';
 
-const drawerWidth = 240;
-
-const styles = theme => ({
+const styles = {
+    
     grow: {
-        flexGrow: 1,
-      },
-
-    logoutButton: {
-        color: 'white',
-        display: 'flex',
-        alignItems: 'left',
-        justifyContent: 'flex-end',
-        marginRight: 34
-        
-      },  
-
-  root: {
-    display: 'flex',
-  },
-  appBar: { 
-      backgroundColor: "black",
-    zIndex: theme.zIndex.drawer + 1,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-  },
-  appBarShift: {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  menuButton: {
-    marginLeft: 12,
-    marginRight: 36,
-   
-  },
-  hide: {
-    display: 'none',
-  },
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-    whiteSpace: 'nowrap',
-  },
-  drawerOpen: {
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerClose: {
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    overflowX: 'hidden',
-    width: theme.spacing.unit * 7 + 1,
-    [theme.breakpoints.up('sm')]: {
-      width: theme.spacing.unit * 9 + 1,
+      flexGrow: 1,
+      
     },
-  },
-  toolbar: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing.unit * 3,
-  },
+    
+    menuButton: {
+     
+      marginLeft: -12,
+      marginRight: 20,
+    },
 
-  video:{
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 8px',
-    justifyContent: 'space-around',
-  },
-});
-
-class MiniDrawer extends React.Component {
-  state = {
-    open: false,
+    logoutButton:{
+        color:'white',
+    },
+  
+    video:{
+      display: 'flex',
+      alignItems: 'center',
+      padding: '70px 40px',
+      justifyContent: 'center',
+    },  
+  
+    buttons:{
+     
+      flexDirection: 'row',
+      alignItems: 'left',
+      justifyContent: 'center',
+      
+    },
+  
+    button1:{
+     
+      alignItems: 'center',
+      padding: '20px 40px',
+    },
+   
+  
   };
+  
+  const StyledButton = withStyles({
+    root: {
+      
+      background: 'linear-gradient(45deg, #000000 30%, #5577FF 90%)',
+      borderRadius: 10,
+      border: 0,
+      color: 'white',
+      height: 48,
+      width: '100%',
+      padding: '0 30px',
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+      
+    },
+    label: {
+      textTransform: 'capitalize',
+    },
+  })(Button);
+  
 
-  handleDrawerOpen = () => {
-    this.setState({ open: true });
-  };
-
-  handleDrawerClose = () => {
-    this.setState({ open: false });
-  };
-
-  render() {
-    const { classes, theme } = this.props;
-
+  function ButtonAppBar(props) {
+    const { classes } = props;
     return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <AppBar
-          position="fixed"
-          className={classNames(classes.appBar, {
-            [classes.appBarShift]: this.state.open,
-          })}
-        >          
-          <Toolbar disableGutters={!this.state.open}>
+      
+      <div >
+        <div className={classes.root} >
+          <AppBar position="static">
+            <Toolbar>
+              <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+                <MenuIcon />
+             </IconButton>
+             <Typography variant="h6" color="inherit" className={classes.grow}>
+                News
+             </Typography>
+             <Link to="/"><Button className={classes.logoutButton}>Log-out</Button></Link>
           
-            <IconButton
-              color="inherit"
-              aria-label="Open drawer"
-              onClick={this.handleDrawerOpen}
-              className={classNames(classes.menuButton, {
-                [classes.hide]: this.state.open,
-              })}
-            >
-              <MenuIcon />
-            </IconButton>            
-            <Typography variant="h5" color="inherit" className={classes.grow}  noWrap>
-                Protect personal infomation in video
-            </Typography>       
-            <Link to="/"> <Button className={classes.logoutButton}> Log-out</Button> </Link>  
-          </Toolbar>
-        </AppBar>
-        <Drawer
-          variant="permanent"
-          className={classNames(classes.drawer, {
-            [classes.drawerOpen]: this.state.open,
-            [classes.drawerClose]: !this.state.open,
-          })}
-          classes={{
-            paper: classNames({
-              [classes.drawerOpen]: this.state.open,
-              [classes.drawerClose]: !this.state.open,
-            }),
-          }}
-          open={this.state.open}
-        >
-          <div className={classes.toolbar}>
-            <IconButton onClick={this.handleDrawerClose}>
-              {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-            </IconButton>
-          </div>
-          <Divider />
-          <List>
-            {['Select Vedio', 'Image Upload', 'Manual editing'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))}
-          </List>
-        </Drawer>
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
-          <div className={classes.video}>
-          <ReactPlayer url='https://www.youtube.com/watch?v=LCKwD1xLLNk' playing />
-          </div>
-        </main>
+            </Toolbar>        
+         </AppBar>      
+       </div>
+           <div className={classes.video} >
+             <ReactPlayer url='https://www.youtube.com/watch?v=LCKwD1xLLNk' playing />  
+            <div className={classes.buttons}>
+  
+              <div className={classes.button1}>
+                <StyledButton>Uplaod Video</StyledButton>
+              </div>
+  
+              <div className={classes.button1}>
+                 <StyledButton>Upload image</StyledButton>
+              </div>
+  
+              <div className={classes.button1}>
+                 <StyledButton>video conversion</StyledButton>
+              </div>
+  
+              <div className={classes.button1}>
+                 <StyledButton>-----------------</StyledButton>
+              </div>
+  
+             </div>
+  
+             
+        </div>
       </div>
     );
   }
-}
-
-MiniDrawer.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles, { withTheme: true })(MiniDrawer);
+  
+  ButtonAppBar.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+  
+  export default withStyles(styles)(ButtonAppBar);

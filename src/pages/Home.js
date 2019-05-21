@@ -13,6 +13,7 @@ import {
 } from 'semantic-ui-react'
 import logo from 'image/logo.png';
 
+
 class Home extends Component {
 
     render() {
@@ -20,9 +21,9 @@ class Home extends Component {
         
         return (
             <div>
-                <Menu fixed='top' inverted>
-                <Container>
-                    <Menu.Item as='a' header >
+                <Menu fixed='top' inverted >
+                <Container >
+                    <Menu.Item as='a' header  >
                     <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
                     VIP WEB
                     </Menu.Item>
