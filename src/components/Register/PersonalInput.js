@@ -6,6 +6,7 @@ import {
     Label,
     Segment,
     Message,
+    Header,
   } from 'semantic-ui-react'
 
 const style = {
@@ -26,8 +27,8 @@ const style = {
 class PersonalInput extends Component {
 
     render() {
-        const { onCertificate,
-              onChange, onClickSendMail,
+        const { onCertificate, fail,
+              onChange, onClickSendMail, register,
               check, sended } = this.props;
     
         return (
@@ -51,10 +52,12 @@ class PersonalInput extends Component {
                             <Button disabled={!sended} onClick={onCertificate} primary>confirm</Button>
                         </div>
                     </Segment>
-                    { !check.enable_next &&
-                        (<Button disabled={true} color='red' fluid size='large'>Sign Up</Button>)}
-                    { check.enable_next &&
-                        (<Link to='/signup/2'><Button disabled={false} onClick={this.handleSubmit} color='red' fluid size='large'>Sign Up</Button></Link>) }
+                    {fail && ( <Header as='h3' block textAlign='center' color='red'> 회원 가입 실패! </Header>) }
+                    { <Button disabled={!check.enable_next} onClick={register} color='red' fluid size='large'>Sign Up</Button> }
+                    { /*!check.enable_next &&
+                        (<Button disabled={true} color='red' fluid size='large'>Sign Up</Button>)*/}
+                    { /*check.enable_next &&
+                        (<Link to='/signup/2'><Button disabled={false} onClick={this.handleSubmit} color='red' fluid size='large'>Sign Up</Button></Link>)*/ }
                 </Form>
             </div>
         );

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import  { Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
+import * as service from 'services';
 import { PersonalInput } from 'components/Register';
 import * as inputActions from 'store/modules/personalInputReducer';
 
@@ -22,15 +24,24 @@ class PersonalInputContainer extends Component {
         InputActions.certification();
     }
 
+    register = async (e) => {
+        const { InputActions, email, password } = this.props;
+        if (service.registerRequest(email, password)=='success')
+            return <Redirect to='/signup/2' />
+        else {
+            InputActions.register_fail();
+        }
+    }
+
     render() {
-        const {certification_number, check, sended} = this.props;
+        const {certification_number, check, fail, sended} = this.props;
 
         return <PersonalInput
             onChange={this.handleChange}
             onClickSendMail={this.handleSendMail}
             onCertificate = {this.handleCertificate}
             certification_number={certification_number}
-            check={check} sended={sended} />;
+            fail={fail} check={check} sended={sended} register={this.register}/>;
     }
 }
 
