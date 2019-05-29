@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import  { Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
 import * as service from 'services';
 import { PersonalInput } from 'components/Register';
@@ -26,24 +25,23 @@ class PersonalInputContainer extends Component {
 
     register = async (e) => {
         const { InputActions, email, password } = this.props;
-        if (service.registerRequest(email, password)=='success')
-            return <Redirect to='/signup/2' />
-        else {
-            InputActions.register_fail();
-        }
+        return service.registerRequest(email, password, function(result) {
+            InputActions.register_result({'result': result});
+        });
     }
 
     render() {
-        const {certification_number, check, fail, sended} = this.props;
+        const {certification_number, check, result, sended} = this.props;
 
         return <PersonalInput
             onChange={this.handleChange}
             onClickSendMail={this.handleSendMail}
             onCertificate = {this.handleCertificate}
             certification_number={certification_number}
-            fail={fail} check={check} sended={sended} register={this.register}/>;
+            result={result} check={check} sended={sended} register={this.register}/>;
     }
 }
+
 
 // props로 넣어줄 스토어 상태 값
 const mapStateToProps = state => ({

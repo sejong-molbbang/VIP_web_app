@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import  { Redirect } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import {
     Button,
@@ -27,12 +28,13 @@ const style = {
 class PersonalInput extends Component {
 
     render() {
-        const { onCertificate, fail,
+        const { onCertificate, result,
               onChange, onClickSendMail, register,
               check, sended } = this.props;
     
         return (
             <div>
+                { result=='success' && <Redirect to='/signup/2'/>}
                 <Form>
                     <Segment piled style={style.paddinglr}>
                         <Label style={style.base}> Email </Label>
@@ -52,7 +54,8 @@ class PersonalInput extends Component {
                             <Button disabled={!sended} onClick={onCertificate} primary>confirm</Button>
                         </div>
                     </Segment>
-                    {fail && ( <Header as='h3' block textAlign='center' color='red'> 회원 가입 실패! </Header>) }
+                    {result=='fali' && ( <Header as='h3' block textAlign='center' color='red'> 회원 가입 실패! </Header>) }
+                    {result=='registed' && ( <Header as='h3' block textAlign='center' color='red'> 이미 등록된 회원입니다. </Header>) }
                     { <Button disabled={!check.enable_next} onClick={register} color='red' fluid size='large'>Sign Up</Button> }
                     { /*!check.enable_next &&
                         (<Button disabled={true} color='red' fluid size='large'>Sign Up</Button>)*/}

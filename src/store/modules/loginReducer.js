@@ -1,13 +1,11 @@
 import { createAction, handleActions } from 'redux-actions';
 
 const CHANGE_VALUE = 'login/CHANGE_VALUE';
-const LOGIN_SUCCESS = 'login/LOGIN_SUCCESS';
-const LOGIN_FAIL = 'login/LOGIN_FAIL';
+const LOGIN_RESULT = 'login/LOGIN_RESULT';
 const CLEAR = 'login/CLEAR';
 
 export const change_value = createAction(CHANGE_VALUE);
-export const login_success = createAction(LOGIN_SUCCESS);
-export const login_fail = createAction(LOGIN_FAIL)
+export const login_result = createAction(LOGIN_RESULT);
 export const clear = createAction(CLEAR);
 
 const initialState = {
@@ -26,21 +24,23 @@ export default handleActions ({
             [name] : value,
         }
     },
-    [LOGIN_SUCCESS]: (state, action) => {
-        const { email } = this.state;
-        console.log('로그인 성공');
-        return {
-            ...state,
-            wrong: false,
-            signed: true,
-            signed_email: email,
+    [LOGIN_RESULT]: (state, action) => {
+        const { result } = action.payload;
+        if (result == 'success') {
+            console.log('로그인 성공');
+            return {
+                ...state,
+                wrong: false,
+                signed: true,
+                signed_email: state.email,
+            }
         }
-    },
-    [LOGIN_FAIL]: (state, action) => {
-        console.log('로그인 실패');
-        return {
-            ...state,
-            wrong: true,
+        else {
+            console.log('로그인 실패');
+            return {
+                ...state,
+                wrong: true,
+            }
         }
     },
     [CLEAR]: (state, action) => {
