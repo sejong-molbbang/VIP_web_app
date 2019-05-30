@@ -20,12 +20,12 @@ class ImgUploader extends Component {
     return (
       <ImageUploader
         withIcon={true}
-        buttonText='Choose images'
-        onChange={this.onDrop}
-        imgExtension={['.jpg', '.gif', '.png', '.svg']}
-        maxFileSize={5242880}
+        buttonText='Choose videos'
+        onChange={this.onDrop}     
+        maxFileSize={52428800}
+        label= "Max file size: 50mb, accepted: avi| mp4"
+        imgExtension={['.avi', '.mp4']}
         withPreview={true}
-        
       />
     );
   }
