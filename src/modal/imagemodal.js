@@ -3,6 +3,20 @@ import { Button, Modal } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import ImageUpload from '../modal/imageUpload.js'
 
+import {
+  Container,
+  Divider,
+  Dropdown,
+  Grid,
+  Header,
+  Image,
+  List,
+  Menu,
+  Segment,
+} from 'semantic-ui-react'
+
+
+
 class ModalTest extends Component {
 
   state = { open : false }
@@ -18,8 +32,9 @@ class ModalTest extends Component {
 
     return (
       <div>
-        <button class="ui inverted primary button" onClick={this.closeConfigShow(true,false,'blurring')}> 이미지 업로드 </button>
-
+        
+        <button class="ui inverted primary button" onClick={this.closeConfigShow(true,false,'blurring')} style={{ marginLeft: '-1.5em' }}> 이미지 업로드 </button>
+        
         <Modal
           closeOnEscape={closeOnEscape}
           closeOnDimmerClick={closeOnDimmerClick}
@@ -44,6 +59,8 @@ class ModalTest extends Component {
             />
           </Modal.Actions>
         </Modal>
+        
+       
       </div>
     )
   }

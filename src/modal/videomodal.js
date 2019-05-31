@@ -18,15 +18,14 @@ class ModalTest extends Component {
 
     return (
       <div>
-        <button class="ui inverted primary button" onClick={this.closeConfigShow(true,false,'blurring')}> 동영상 업로드 </button>
-
+        <button class="ui inverted primary button" onClick={this.closeConfigShow(true,false,'blurring')} style={{ marginLeft: '-1.5em' }}> 동영상 업로드 </button>
+      
         <Modal
           closeOnEscape={closeOnEscape}
           closeOnDimmerClick={closeOnDimmerClick}
           dimmer={dimmer}
           open={open}
           onClose={this.close}
-
         >
           <Modal.Header> 동영상을 업로드하세요. </Modal.Header>
           <Modal.Description>
