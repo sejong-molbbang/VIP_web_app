@@ -8,13 +8,12 @@ import * as loginActions from 'store/modules/loginReducer';
 class LoginContainer extends Component {
 
     handleLoginClick = async (e) => {
-        const { LoginActions } = this.props;
+        const { LoginActions, email, password } = this.props;
         e.persist();
-        //const response = await service.loginRequest(this.id, this.password);
-        if (await service.loginRequest(this.id, this.password) == 'success')
-            LoginActions.login_success();
-        else
-            LoginActions.login_fail();
+
+        await service.loginRequest(email, password, function(result) {
+            LoginActions.login_result({'result' : result});
+        });
     }
 
     handleChange = (e) => {

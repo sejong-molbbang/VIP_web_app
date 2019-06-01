@@ -21,7 +21,7 @@ class LoginForm extends Component {
                 <Grid.Column style={{ maxWidth: 500 }}>
                 <Header as='h2' color='black' textAlign='center'>
                     <Image src={logo} /> Log-in to your account
-                </Header>
+                </Header>   
                 <Form size='large'>
                     <Segment stacked>
                     <Form.Input
@@ -38,7 +38,7 @@ class LoginForm extends Component {
                         iconPosition='left'
                         placeholder='Password'
                         type='password'
-                        name= 'passwd'
+                        name= 'password'
                         onChange={onChange}
                     />
                     <Link to="/Mainscreen">

@@ -6,24 +6,34 @@ import ReactPlayer from 'react-player'
 import FileUpload from 'upload/upload.js' ;
 import ImageModal from 'modal/imagemodal.js';
 import VideoModal from 'modal/videomodal.js';
+import  { Redirect } from 'react-router-dom'
+import * as service from 'services';
 
 
 class Mainscreen extends Component {
     state = {
       logout : false,
     }
+    handleLogout = (e) => {
+      this.setState({
+        logout: true,
+      });
+      service.logoutRequest();
+    }
+    
     render() {
         return (
             <div>
+              {this.state.logout && <Redirect to='/'/>}
               <Menu fixed='top' inverted>
-                <Container>
-                  <Menu.Item as='a' header >
-                    <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
-                    VIP WEB
-                  </Menu.Item>
-                  <Menu.Item as='a'>Personal Infomation Protect</Menu.Item>
-                  <button class="negative ui button" style={{ marginLeft: '63.6em' }}>Logout</button>
-                </Container>
+              <Container>
+                <Menu.Item as='a' header >
+                  <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
+                  VIP WEB
+                </Menu.Item>
+                <Menu.Item as='a'>Personal Infomation Protect</Menu.Item>
+                <button class="negative ui button" style={{ marginLeft: '63.6em' }} onClick={this.handleLogout}>Logout</button>
+              </Container>
               </Menu>
           
               <Container text style={{ marginTop: '5em'}}>
@@ -35,8 +45,6 @@ class Mainscreen extends Component {
                           <input type="checkbox" name="public"/>
                           <label >얼굴만 인식</label>
                      </div>
-          
-                     
                     
                      <div class="ui four column doubling stackable grid container" style={{ marginTop: '2em'}}>
           

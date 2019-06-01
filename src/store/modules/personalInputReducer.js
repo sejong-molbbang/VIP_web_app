@@ -1,11 +1,11 @@
 import { createAction, handleActions } from 'redux-actions';
+import { create } from 'istanbul-reports';
 
 const CHANGE_VALUE = 'signup/CHANGE_VALUE';
-const SUBMIT_FIRST = 'signup/SUBMIT_FIRST';
 const SEND_EMAIL = 'signup/SEND_EMAIL';
 const CERTIFICATION = 'signup/CERTIFICATION';
 const TO_HOME = 'signup/TO_HOME';
-
+const REGISTER_RESULT = 'signup/register_result';
 const SEND_MAIL_SUCCESS = 'contact/SEND_MAIL_SUCCESS'
 const SEND_MAIL_FAILED = 'contact/SEND_MAIL_FAILED';
 
@@ -13,10 +13,10 @@ export const send_mail_success = createAction(SEND_MAIL_SUCCESS);
 export const send_mail_failed = createAction(SEND_MAIL_FAILED);
 
 export const change_value = createAction(CHANGE_VALUE, target => target);
-export const submit_first = createAction(SUBMIT_FIRST);
 export const send_email = createAction(SEND_EMAIL);
 export const certification = createAction(CERTIFICATION);
 export const to_home = createAction(TO_HOME);
+export const register_result = createAction(REGISTER_RESULT);
 
 const initialState = {
     email : '',
@@ -32,7 +32,7 @@ const initialState = {
         pcheck : false,
         enable_next : false
     },
-
+    result : '',
     loading: false,
     message: '',
     errMessage: ''
@@ -63,8 +63,13 @@ export default handleActions ({
             }
         }
     },
-    [SUBMIT_FIRST] : (state, action) => {
-        return { email : action.email, password : action.password};
+    [REGISTER_RESULT] : (state, action) => {
+        const {result} = action.payload;
+        
+        return {
+            ...state,
+            result: result,
+        }        
     },
     [SEND_EMAIL] : (state, action) => {
         console.log(state.email + '로 메일을 전송합니다');
