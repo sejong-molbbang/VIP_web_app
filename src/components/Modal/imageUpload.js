@@ -22,10 +22,10 @@ class ImgUploader extends Component {
         withIcon={true}
         buttonText='Choose images'
         onChange={this.onDrop}
-        imgExtension={['.jpg', '.gif', '.png', '.svg']}
+        imgExtension={['.jpg', '.png']}
         maxFileSize={5242880}
         withPreview={true}
-        
+        label = '.jpg 또는 .png 파일 허용'
       />
     );
   }

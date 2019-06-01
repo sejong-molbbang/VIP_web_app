@@ -39,11 +39,30 @@ export default handleActions ({
             console.log('로그인 실패');
             return {
                 ...state,
+                signed: false,
                 wrong: true,
             }
         }
     },
     [CLEAR]: (state, action) => {
+        if (state.signed) {
+            return {
+                email : '',
+                password : '',
+                wrong: false,
+                signed: false,
+                signed_email: state.email,
+            }
+        }
+        else if (state.wrong) {
+            return {
+                email : '',
+                password : '',
+                wrong: true,
+                signed: false,
+            }
+        }
+        
         return initialState;
     },
 }, initialState);

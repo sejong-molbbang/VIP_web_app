@@ -1,15 +1,26 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types';
-import {Container, Divider, Dropdown, Grid, Header, Image,  List, Menu, Segment,} from 'semantic-ui-react'
+import {Container, Divider, Dropdown, Grid, Header, Image,  List, Menu, Segment, Label} from 'semantic-ui-react'
 import logo from 'image/logo.png';
 import ReactPlayer from 'react-player'
 import FileUpload from 'upload/upload.js' ;
-import ImageModal from 'modal/imagemodal.js';
-import VideoModal from 'modal/videomodal.js';
+import {ImageUploadModal} from 'components/Modal';
+import {VideoUploadModal} from 'components/Modal';
 import  { Redirect } from 'react-router-dom'
 import * as service from 'services';
+import { Link } from 'react-router-dom';  
 
-
+const style = {
+  header: {
+    display: 'flex',
+    justifyContent: 'space-around',
+  },
+  logout: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+}
 class Mainscreen extends Component {
     state = {
       logout : false,
@@ -22,17 +33,20 @@ class Mainscreen extends Component {
     }
     
     render() {
+        const { location } = this.props;
+
         return (
             <div>
               {this.state.logout && <Redirect to='/'/>}
               <Menu fixed='top' inverted>
-              <Container>
+              <Container style={style.header}>
                 <Menu.Item as='a' header >
                   <Image size='mini' src={logo} style={{ marginRight: '1.5em' }} />
                   VIP WEB
+                  <Label color={'red'}>Personal Infomation Protect</Label>
                 </Menu.Item>
-                <Menu.Item as='a'>Personal Infomation Protect</Menu.Item>
-                <button class="negative ui button" style={{ marginLeft: '63.6em' }} onClick={this.handleLogout}>Logout</button>
+                <font color='white' style={style.logout}>{location.state}</font>
+                <Link to='/' id='logout' onClick={this.handleLogout} class="negative ui button" style={style.logout} ><label>Logout</label></Link>
               </Container>
               </Menu>
           
@@ -49,11 +63,11 @@ class Mainscreen extends Component {
                      <div class="ui four column doubling stackable grid container" style={{ marginTop: '2em'}}>
           
                        <div class="column">
-                          <VideoModal></VideoModal>
+                          <VideoUploadModal email={location.state}/>
                        </div>
           
                        <div class="column">
-                          <ImageModal></ImageModal>
+                          <ImageUploadModal email={location.state}/>
                        </div>
           
                        <div class="column">

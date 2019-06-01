@@ -13,6 +13,7 @@ class LoginContainer extends Component {
 
         await service.loginRequest(email, password, function(result) {
             LoginActions.login_result({'result' : result});
+            LoginActions.clear();
         });
     }
 
@@ -23,10 +24,13 @@ class LoginContainer extends Component {
     }
 
     render() {
-        const { id, password } = this.props;
+        const { email, password, signed, wrong, signed_email } = this.props;
         const isProcessing = false;
 
         return (<Login
+            signed={signed}
+            signed_email={signed_email}
+            wrong={wrong}
             onChange={this.handleChange}
             signin={this.handleLoginClick} />
         );

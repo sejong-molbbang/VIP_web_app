@@ -1,15 +1,20 @@
 import React, { Component } from 'react'
 import logo from 'image/logo.png';
 import { Link } from 'react-router-dom';
+import  { Redirect } from 'react-router-dom'
 
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 
 class LoginForm extends Component {
     render() {
-        const { onChange, signin } = this.props;
+        const { onChange, signin, signed, wrong, email, password, signed_email } = this.props;
 
         return (
             <div className='login-form'>
+            {signed && <Redirect to={{
+                pathname: '/mainscreen',
+                state: signed_email
+                }}/>}
             <style>{`
                 body > div,
                 body > div > div,
@@ -24,30 +29,31 @@ class LoginForm extends Component {
                 </Header>   
                 <Form size='large'>
                     <Segment stacked>
-                    <Form.Input
-                        fluid
-                        icon='user' 
-                        iconPosition='left' 
-                        placeholder='E-mail address'
-                        name='email'
-                        onChange={onChange}
-                    />
-                    <Form.Input
-                        fluid
-                        icon='lock'
-                        iconPosition='left'
-                        placeholder='Password'
-                        type='password'
-                        name= 'password'
-                        onChange={onChange}
-                    />
-                    <Link to="/Mainscreen">
-                    <Button
-                     color='red' fluid size='large'
-                     onClick={signin}>
-                        Login
-                    </Button>
-                    </Link>
+                        <Form.Input
+                            fluid
+                            icon='user' 
+                            iconPosition='left' 
+                            placeholder='E-mail address'
+                            name='email'
+                            text={email}
+                            onChange={onChange}
+                        />
+                        <Form.Input
+                            fluid
+                            icon='lock'
+                            iconPosition='left'
+                            placeholder='Password'
+                            type='password'
+                            name='password'
+                            text={password}
+                            onChange={onChange}
+                        />
+                        {wrong && '아이디 및 비밀번호를 다시 확인해주세요.'}
+                        <Button
+                            color='red' fluid size='large'
+                            onClick={signin}>
+                            Login
+                        </Button>
                     </Segment>
                 </Form>
                 <Message>

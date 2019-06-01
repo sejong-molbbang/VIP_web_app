@@ -1,23 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Modal } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css'
-import ImageUpload from '../modal/imageUpload.js'
+import VideoUpload from './videoUpload'
 
-import {
-  Container,
-  Divider,
-  Dropdown,
-  Grid,
-  Header,
-  Image,
-  List,
-  Menu,
-  Segment,
-} from 'semantic-ui-react'
-
-
-
-class ModalTest extends Component {
+class VideoUploadModal extends Component {
 
   state = { open : false }
 
@@ -32,9 +17,8 @@ class ModalTest extends Component {
 
     return (
       <div>
-        
-        <button class="ui inverted primary button" onClick={this.closeConfigShow(true,false,'blurring')} style={{ marginLeft: '-1.5em' }}> 이미지 업로드 </button>
-        
+        <button class="ui inverted primary button" onClick={this.closeConfigShow(true,false,'blurring')} style={{ marginLeft: '-1.5em' }}> 동영상 업로드 </button>
+      
         <Modal
           closeOnEscape={closeOnEscape}
           closeOnDimmerClick={closeOnDimmerClick}
@@ -42,9 +26,9 @@ class ModalTest extends Component {
           open={open}
           onClose={this.close}
         >
-          <Modal.Header> 이미지를 업로드하세요. </Modal.Header>
+          <Modal.Header> 동영상을 업로드하세요. </Modal.Header>
           <Modal.Description>
-           <ImageUpload/>
+           <VideoUpload/>
           </Modal.Description>
           <Modal.Actions>
             <Button color='red' onClick={this.close} negative>
@@ -59,11 +43,9 @@ class ModalTest extends Component {
             />
           </Modal.Actions>
         </Modal>
-        
-       
       </div>
     )
   }
 }
 
-export default ModalTest;
+export default VideoUploadModal;
