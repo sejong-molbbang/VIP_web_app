@@ -24,12 +24,31 @@ const style = {
 class Mainscreen extends Component {
     state = {
       logout : false,
+      images: [],
+      video: "",
     }
     handleLogout = (e) => {
       this.setState({
         logout: true,
       });
       service.logoutRequest();
+    }
+
+    getImageUrl = (data) => {
+      const { images } = this.state;
+      this.setState({
+        ...this.state,
+        images: images.concat(data.urls)
+      });
+    }
+
+    getVideoUrl = (data) => {
+      const { video } = this.state;
+      console.log(data);
+      this.setState({
+        ...this.state,
+        video: data.url,
+      });
     }
     
     render() {
@@ -63,11 +82,11 @@ class Mainscreen extends Component {
                      <div class="ui four column doubling stackable grid container" style={{ marginTop: '2em'}}>
           
                        <div class="column">
-                          <VideoUploadModal email={location.state}/>
+                          <VideoUploadModal email={location.state} handler={this.getVideoUrl}/>
                        </div>
           
                        <div class="column">
-                          <ImageUploadModal email={location.state}/>
+                          <ImageUploadModal email={location.state} handler={this.getImageUrl}/>
                        </div>
           
                        <div class="column">
@@ -80,7 +99,7 @@ class Mainscreen extends Component {
           
                       </div>  
                </div>
-              </Container>   
+              </Container>
             </div>
         )
     }

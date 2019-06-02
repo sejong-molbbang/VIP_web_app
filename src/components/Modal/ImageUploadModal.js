@@ -14,25 +14,23 @@ import {
 } from 'semantic-ui-react'
 
 
-
 class ImageUploadModal extends Component {
     constructor(props){
         super(props);
         this.state = {
-        image: null,
+        images: null,
         };
         this.inpuElement = null;
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
-
-    handleChange(e){
-        this.setState({image: e.target.files[0]});
-    }
-
+    
     handleSubmit(e){
+        const { handler } = this.props;
         let formData = new FormData();
-        formData.append('image',this.state.image);
+        for (const image of this.state.images) {
+            formData.append('images', image);
+        }
         fetch('http://localhost:8000/api/imageupload', {
             method: 'POST',
             headers: {
@@ -42,23 +40,28 @@ class ImageUploadModal extends Component {
         })
         .then(res => res.json())
         .then((data) => {
-            console.log(data);
+            handler(data);
             this.close();
         })
         .catch(err => console.log(err));
     }
 
+
+    handleChange(e){
+        this.setState({images: e.target.files});
+    }
+
     state = { open : false }
 
     closeConfigShow = (closeOnEscape, closeOnDimmerClick, dimmer) => () => {
-    this.setState({ closeOnEscape, closeOnDimmerClick, dimmer, open: true })
+        this.setState({ closeOnEscape, closeOnDimmerClick, dimmer, open: true })
     }
 
     close = () => this.setState({ open: false })
 
     render() {
-        const { open, closeOnEscape, closeOnDimmerClick, dimmer } = this.state
-        const { email } = this.props
+        const { open, closeOnEscape, closeOnDimmerClick, dimmer } = this.state;
+        const { email } = this.props;
 
         return (
             <div>
@@ -75,9 +78,9 @@ class ImageUploadModal extends Component {
                 <Modal.Header> 이미지를 업로드하세요. </Modal.Header>
                 <Modal.Description>
                     <input
-                        name='image_upload'
+                        name='images'
                         type="file"
-                        multiple={true}
+                        multiple
                         ref={(input) => { this.inpuElement = input; }}
                         accept=".jpg,.jpeg,.png"
                         onChange={this.handleChange}
