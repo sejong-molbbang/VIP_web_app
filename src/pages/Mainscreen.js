@@ -63,7 +63,7 @@ class Mainscreen extends Component {
     timer = null;
 
     handleMasking = async (e) => {
-      const { video, images, converting, only_face, success, error } = this.state;
+      const { video, images, only_face } = this.state;
       const { location } = this.props;
       
       this.setState({

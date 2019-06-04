@@ -12,6 +12,8 @@ import {
   Menu,
   Segment,
 } from 'semantic-ui-react'
+import axios from 'axios';
+import { setInterval } from 'core-js';
 
 
 class ImageUploadModal extends Component {
@@ -61,8 +63,7 @@ class ImageUploadModal extends Component {
 
     render() {
         const { open, closeOnEscape, closeOnDimmerClick, dimmer } = this.state;
-        const { email } = this.props;
-
+        
         return (
             <div>
             
@@ -90,7 +91,6 @@ class ImageUploadModal extends Component {
                     취소
                 </Button>
                 <Button
-                    name = {email}
                     positive
                     icon='checkmark'
                     labelPosition='left'
