@@ -45,3 +45,26 @@ export function logoutRequest() {
         console.log(error);
     });
 }
+
+export function maskingRequest(video, images, email, only_face, act_func) {
+    if (video == "") {
+        return "not choose video";
+    }
+    axios.post('http://localhost:8000/ml/masking', {
+        video: video,
+        images: images,
+        email: email,
+        only_face: only_face,
+    }).then(function (response) {
+        if (response.data.result == "complete") {
+            act_func(response.data.result, response.data.url);
+        }
+        else {
+            act_func(response.data.result, "");
+        }
+    })
+    .catch(function(error) {
+        console.log(error);
+        act_func('error', "");
+    });
+}

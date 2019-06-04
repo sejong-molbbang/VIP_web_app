@@ -83,8 +83,7 @@ class ImageUploadModal extends Component {
                         multiple
                         ref={(input) => { this.inpuElement = input; }}
                         accept=".jpg,.jpeg,.png"
-                        onChange={this.handleChange}
-                    />
+                        onChange={this.handleChange}/>
                 </Modal.Description>
                 <Modal.Actions>
                 <Button color='red' onClick={this.close} negative>
