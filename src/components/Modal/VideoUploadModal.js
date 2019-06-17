@@ -67,7 +67,7 @@ class VideoUploadModal extends Component {
         return (
             <div>
             
-            <button class="ui inverted primary button" onClick={this.closeConfigShow(true,false,'blurring')} style={{ marginLeft: '-1.5em' }}> 영상 업로드 </button>
+            <button class="ui inverted green button" onClick={this.closeConfigShow(true,false,'blurring')} style={{ marginLeft: '-1.5em' }}> 영상 업로드 </button>
             
                 <Modal
                     closeOnEscape={closeOnEscape}

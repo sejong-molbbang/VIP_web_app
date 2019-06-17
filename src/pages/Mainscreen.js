@@ -131,7 +131,7 @@ class Mainscreen extends Component {
                       {(status == 1) && <Button color='green'>완료!</Button>}
                       {(status == 2) && <Button color='red'>오류로 중단됨</Button>}
                                         
-                     <div class="ui four column doubling stackable grid container" style={{ marginTop: '2em'}}>
+                     <div class="ui three column doubling stackable grid container" style={{ marginTop: '2em'}}>
           
                        <div class="column">
                           <VideoUploadModal email={location.state} handler={this.getVideoUrl}/>
@@ -140,10 +140,10 @@ class Mainscreen extends Component {
                        <div class="column">
                           <ImageUploadModal email={location.state} handler={this.getImageUrl}/>
                        </div>
-          
+                       {/*
                        <div class="column">
                           <button class="ui inverted green button" style={{ marginLeft: '-1.5em' }} >수작업 마스킹</button>
-                       </div>
+                       </div>*/}
           
                        <div class="column">
                           <button class="ui inverted red button" onClick={this.handleMasking} style={{ marginLeft: '-1.5em' }} >자동 마스킹 시작</button>
