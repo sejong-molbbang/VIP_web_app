@@ -19,7 +19,7 @@
     "react-player": "^1.11.0",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1",
+    "react-scripts": "5.0.1",
     "react-tag-input": "^6.4.0",
     "redux-actions": "^2.6.5",
     "redux-csrf": "^1.1.0",
